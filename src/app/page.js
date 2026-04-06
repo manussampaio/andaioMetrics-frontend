@@ -4,7 +4,7 @@ import { TopbarMenu } from "@/components/ui/topbarMenu";
 export default function Home() {
   return (
     <>
-      <TopbarMenu />
+      <h1 className="flex items-center justify-center bg-slate-50">Home</h1>
     </>
   );
 }
