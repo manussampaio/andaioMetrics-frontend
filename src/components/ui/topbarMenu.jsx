@@ -20,7 +20,7 @@ export function TopbarMenu() {
                 </div>
                 <div className="flex gap-6">
                     <Link href={"/login"}><Button variant="outline" className="text-orange-400">Login</Button></Link>
-                    <Link href={"/autenticacao"}><Button className=" text-white bg-orange-400 hover:bg-orange-600">Cadastrar-se</Button></Link>
+                    <Link href={"/signup"}><Button className=" text-white bg-orange-400 hover:bg-orange-600">Cadastrar-se</Button></Link>
                 </div>
             </nav>
         </header>

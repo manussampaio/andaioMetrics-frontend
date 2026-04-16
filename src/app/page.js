@@ -39,6 +39,7 @@ export default function Home() {
               width={400}
               height={300}
               className="rounded-xl mb-10"
+              alt=""
             />
           </div>
 
@@ -118,6 +119,7 @@ export default function Home() {
             width={400}
             height={300}
             className="rounded-xl"
+            alt=""
           />
 
         </section>
