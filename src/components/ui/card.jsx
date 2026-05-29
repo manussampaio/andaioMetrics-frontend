@@ -1,7 +1,6 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { abril } from "@/app/layout";
 
 function Card({
   className,
@@ -42,7 +41,7 @@ function CardTitle({
   return (
     <div
       data-slot="card-title"
-      className={cn(`font-heading text-3xl font-bold text-center text-blue-900 ${abril.className}`, className)}
+      className={cn("font-heading text-base font-medium", className)}
       {...props} />
   );
 }
@@ -54,7 +53,7 @@ function CardDescription({
   return (
     <div
       data-slot="card-description"
-      className={cn("text-sm text-center text-muted-foreground", className)}
+      className={cn("text-sm text-muted-foreground", className)}
       {...props} />
   );
 }

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "./button";
-import {abril} from "@/app/layout"
 
 export function TopbarMenu() {
     return (
@@ -9,10 +8,10 @@ export function TopbarMenu() {
             <div className="flex items-center">
                 <img src="/egg.png" className="size-12 m-3"></img>
                 <Link href={"/"}>
-                    <h1 className={`text-3xl w-70 font-extrabold text-blue-900 ${abril.className}`}>ANDAIO Metrics</h1>
+                    <h1 className={`text-3xl w-70 font-extrabold text-blue-900`}>ANDAIO Metrics</h1>
                 </Link>
             </div>
-            
+
             <nav className="flex flex-row items-center gap-7.5">
                 <div className=" flex gap-6 text-sm text-blue-900">
                     <Link href={"/nova-analise"}>Nova análise</Link>
@@ -25,6 +24,6 @@ export function TopbarMenu() {
             </nav>
         </header>
 
-        
+
     )
 }

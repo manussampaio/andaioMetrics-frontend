@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import {
   Card,
   CardContent,
@@ -59,7 +60,7 @@ export function SignupForm({
               <Field>
                 <Button type="submit" className="bg-orange-400 hover:bg-orange-600">Create Account</Button>
                 <FieldDescription className="text-center">
-                  Já tem uma conta? <a href="#">Fazer login</a>
+                  Já tem uma conta? <Link href="/login">Fazer login</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

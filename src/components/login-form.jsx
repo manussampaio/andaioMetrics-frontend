@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import {
   Card,
   CardContent,
@@ -16,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 
 export function LoginForm({
-  className,
+  className, 
   ...props
 }) {
   return (
@@ -49,7 +50,7 @@ export function LoginForm({
               <Field>
                 <Button type="submit" className="bg-orange-400 hover:bg-orange-600">Login</Button>
                 <FieldDescription className="text-center">
-                  Não tem uma conta? <a href="#">Cadastrar-se</a>
+                  Não tem uma conta? <Link href="/signup">Cadastrar-se</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

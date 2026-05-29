@@ -1,16 +1,11 @@
 import { Geist, Geist_Mono, Abril_Fatface } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { TopbarMenu } from "@/components/ui/topbarMenu";
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
-
-const abril = Abril_Fatface({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-abril",
 });
 
 const geistMono = Geist_Mono({
@@ -27,14 +22,15 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${abril.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <TopbarMenu />
-        {children}
+        <TooltipProvider>
+          <TopbarMenu/>
+          {children}
+        </TooltipProvider>
       </body>
     </html>
   );
 }
 
-export {abril}
