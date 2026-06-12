@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -15,62 +17,123 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
-export function SignupForm({
-  className,
-  ...props
-}) {
+export function SignupForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError("");
+
+    // Validação no cliente — antes de ir ao servidor
+    if (password.length < 8) {
+      setError("A senha deve ter pelo menos 8 caracteres.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError("As senhas não coincidem.");
+      return;
+    }
+
+    setLoading(true);
+
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+    });
+
+    setLoading(false);
+
+    if (error) {
+      setError("Erro ao criar conta. Verifique os dados e tente novamente.");
+      return;
+    }
+
+    router.push("/dashboard");
+  }
+
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle>Criar conta</CardTitle>
-          <CardDescription>
-            Insira seu email para criar sua conta
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form>
-            <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor="name">Nome Completo</FieldLabel>
-                <Input id="name" type="text" placeholder="João da Silva" required />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" type="email" placeholder="seu@email.com" required />
-              </Field>
-              <Field>
-                <Field className="grid grid-cols-2 gap-4">
-                  <Field>
-                    <FieldLabel htmlFor="password">Senha</FieldLabel>
-                    <Input id="password" type="password" required />
-                  </Field>
-                  <Field>
-                    <FieldLabel htmlFor="confirm-password">
-                      Confirme a senha
-                    </FieldLabel>
-                    <Input id="confirm-password" type="password" required />
-                  </Field>
-                </Field>
-                <FieldDescription>
-                  A senha deve conter no mínimo 8 caracteres.
-                </FieldDescription>
-              </Field>
-              <Field>
-                <Button type="submit" className="bg-orange-400 hover:bg-orange-600">Create Account</Button>
-                <FieldDescription className="text-center">
-                  Já tem uma conta? <Link href="/login">Fazer login</Link>
-                </FieldDescription>
-              </Field>
-            </FieldGroup>
-          </form>
-        </CardContent>
-      </Card>
-      <FieldDescription className="px-6 text-center">
-        Ao clicar em continuar, você concorda com os <a href="#">Termos de Serviço</a>{" "}
-        e <a href="#">Política de Privacidade</a>.
-      </FieldDescription>
+    <div className="flex flex-col gap-6">
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+        <FieldGroup>
+          <div className="flex flex-col items-center gap-1 text-center mb-10">
+            <h1 className="text-2xl font-bold">Crie sua conta</h1>
+            <p className="text-sm text-balance text-muted-foreground">
+              Preencha o formulário abaixo para criar sua conta
+            </p>
+          </div>
+
+          {error && (
+            <p className="text-sm text-red-500 text-center mb-2">{error}</p>
+          )}
+
+          <Field>
+            <FieldLabel htmlFor="name">Nome Completo</FieldLabel>
+            <Input
+              id="name"
+              type="text"
+              placeholder="John Doe"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="email">E-mail</FieldLabel>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="password">Senha</FieldLabel>
+            <Input
+              id="password"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FieldDescription>Deve ter pelo menos 8 caracteres.</FieldDescription>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="confirm-password">Confirmar Senha</FieldLabel>
+            <Input
+              id="confirm-password"
+              type="password"
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </Field>
+          <Field className="mt-10">
+            <Button type="submit" disabled={loading}>
+              {loading ? "Criando conta..." : "Criar Conta"}
+            </Button>
+          </Field>
+          <Field>
+            <FieldDescription className="px-6 text-center">
+              Já tem uma conta? <Link href="/login">Login</Link>
+            </FieldDescription>
+          </Field>
+        </FieldGroup>
+      </form>
     </div>
   );
 }
+
