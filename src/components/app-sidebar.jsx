@@ -1,11 +1,8 @@
-"use client"
+// src/components/app-sidebar.jsx
+"use client";
 
-import * as React from "react"
+import { ChartBar, LayoutDashboard, Link, Link2 } from "lucide-react";
 
-import { NavDocuments } from "@/components/nav-documents"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -14,166 +11,47 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import { RiDashboardLine, RiListUnordered, RiBarChartLine, RiFolderLine, RiGroupLine, RiCameraLine, RiFileTextLine, RiSettingsLine, RiQuestionLine, RiSearchLine, RiDatabase2Line, RiFileChartLine, RiFileLine, RiCommandLine } from "@remixicon/react"
+} from "@/components/ui/sidebar";
+import { NavMain } from "./nav-main";
+import { NavUser } from "./nav-user";
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Manuella Sampaio",
+    email: "manuella.sampaio@gmail.com"
   },
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
-      icon: (
-        <RiDashboardLine />
-      ),
+      url: "/dashboard",
+      icon: LayoutDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: (
-        <RiListUnordered />
-      ),
+      title: "Links",
+      url: "/links",
+      icon: Link2,
     },
     {
       title: "Analytics",
-      url: "#",
-      icon: (
-        <RiBarChartLine />
-      ),
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: (
-        <RiFolderLine />
-      ),
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: (
-        <RiGroupLine />
-      ),
+      url: "/analytics",
+      icon: ChartBar,
     },
   ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: (
-        <RiCameraLine />
-      ),
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: (
-        <RiFileTextLine />
-      ),
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: (
-        <RiFileTextLine />
-      ),
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <RiSettingsLine />
-      ),
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: (
-        <RiQuestionLine />
-      ),
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: (
-        <RiSearchLine />
-      ),
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: (
-        <RiDatabase2Line />
-      ),
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: (
-        <RiFileChartLine />
-      ),
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: (
-        <RiFileLine />
-      ),
-    },
-  ],
-}
+};
 
-export function AppSidebar({
-  ...props
-}) {
+export function AppSidebar({ ...props }) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:p-1.5!">
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:p-1.5!"
+            >
               <a href="#">
-                <RiCommandLine className="size-5!" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <Link className="size-5!" />
+                <span className="text-base font-semibold">minURL</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -181,8 +59,6 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
