@@ -19,23 +19,6 @@ export default function Home() {
                 Registre dados como peso da gema, altura da gema e altura da
                 clara de forma simples, rápida e confiável.
               </p>
-
-              <div className="flex gap-3">
-                <Link href={"/nova-analise"}>
-                  <Button className="rounded-full bg-orange-400 hover:bg-orange-500">
-                    Nova análise
-                  </Button>
-                </Link>
-
-                <Link href={"/ver-analises"}>
-                  <Button
-                    variant="outline"
-                    className="rounded-full text-orange-400"
-                  >
-                    Ver análises
-                  </Button>
-                </Link>
-              </div>
             </div>
 
             <Image

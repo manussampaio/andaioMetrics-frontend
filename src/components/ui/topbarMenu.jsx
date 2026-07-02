@@ -13,10 +13,6 @@ export function TopbarMenu() {
             </div>
 
             <nav className="flex flex-row items-center gap-7.5">
-                <div className=" flex gap-6 text-sm text-blue-900">
-                    <Link href={"/nova-analise"}>Nova análise</Link>
-                    <Link href={"/ver-analises"}>Ver análises</Link>
-                </div>
                 <div className="flex gap-6">
                     <Link href={"/login"}><Button variant="outline" className="text-orange-400">Login</Button></Link>
                     <Link href={"/signup"}><Button className=" text-white bg-orange-400 hover:bg-orange-600">Cadastrar-se</Button></Link>
